@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: cxone scan
-        uses: my-test-1234/cxone-custom-action@main
+        uses: my-test-1234/cxone-custom-action@720694fff951e38f50fd1c53f1c4197226fe509c
         with:
           cx_tenant: ${{ secrets.CX_TENANT }}
           base_uri: ${{ secrets.BASE_URI }}
