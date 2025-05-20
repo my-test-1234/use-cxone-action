@@ -1,0 +1,27 @@
+name: AppSec Scans 2
+
+on:
+  push:
+    branches: [ "main", "feature/*" ]
+  pull_request:
+    branches: [ "main", "feature/*" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+  
+jobs:
+  AppSec-Scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: cxone scan
+        uses: rajesh-sec/cxone-custom-action@main
+        with:
+          cx_tenant: ${{ secrets.CX_TENANT }}
+          base_uri: ${{ secrets.BASE_URI }}
+          cx_client_id: ${{ secrets.CX_CLIENT_ID }}
+          cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
