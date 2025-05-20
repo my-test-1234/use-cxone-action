@@ -27,11 +27,11 @@ jobs:
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
       - name: Print Sarif
         run: cat cx_result.sarif
-      - name: Generate bypass.sarif file
-        run: |
-          echo '{"$schema":"https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json","version":"2.1.0","runs":[{"tool":{"driver":{"name":"Checkmarx One","version":"1.0","informationUri":"https://checkmarx.com/resource/documents/en/34965-67042-checkmarx-one.html","rules":[]}},"results":[]}]}'> cx_result.sarif
+      # - name: Generate bypass.sarif file
+      #   run: |
+      #     echo '{"$schema":"https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json","version":"2.1.0","runs":[{"tool":{"driver":{"name":"Checkmarx One","version":"1.0","informationUri":"https://checkmarx.com/resource/documents/en/34965-67042-checkmarx-one.html","rules":[]}},"results":[]}]}'> cx_result.sarif
 
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: cx_result.sarif
+      # - name: Upload SARIF file
+      #   uses: github/codeql-action/upload-sarif@v3
+      #   with:
+      #     sarif_file: cx_result.sarif
