@@ -28,6 +28,10 @@ jobs:
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
       - name: Print Sarif
         run: cat cx_result.sarif
+      - name: Fix ownership of SARIF file
+        run: |
+          sudo chown $USER:$USER ${{ github.workspace }}/cx_result.sarif
+
       - name: Debug SARIF file permissions
         run: |
           ls -l ${{ github.workspace }}/cx_result.sarif
