@@ -5,7 +5,8 @@ on:
     branches: [ "main", "feature/*" ]
   pull_request:
     branches: [ "main", "feature/*" ]
-  workflow_dispatch:
+  repository_dispatch:
+    types: [scheduler]
 
 # permissions:
 #   contents: write
@@ -26,16 +27,16 @@ jobs:
           base_uri: ${{ secrets.BASE_URI }}
           cx_client_id: ${{ secrets.CX_CLIENT_ID }}
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
-      - name: Print Sarif
-        run: cat cx_result.sarif
-      - name: Fix ownership of SARIF file
-        run: |
-          sudo chown $USER:$USER ${{ github.workspace }}/cx_result.sarif
+      # - name: Print Sarif
+      #   run: cat cx_result.sarif
+      # - name: Fix ownership of SARIF file
+      #   run: |
+      #     sudo chown $USER:$USER ${{ github.workspace }}/cx_result.sarif
 
-      - name: Debug SARIF file permissions
-        run: |
-          ls -l ${{ github.workspace }}/cx_result.sarif
-          stat ${{ github.workspace }}/cx_result.sarif
+      # - name: Debug SARIF file permissions
+      #   run: |
+      #     ls -l ${{ github.workspace }}/cx_result.sarif
+      #     stat ${{ github.workspace }}/cx_result.sarif
           touch ${{ github.workspace }}/test_write.txt
 
       - name: Generate bypass.sarif file
