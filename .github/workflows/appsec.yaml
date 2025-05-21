@@ -27,6 +27,7 @@ jobs:
           base_uri: ${{ secrets.BASE_URI }}
           cx_client_id: ${{ secrets.CX_CLIENT_ID }}
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
+          
       # - name: Print Sarif
       #   run: cat cx_result.sarif
       # - name: Fix ownership of SARIF file
@@ -37,14 +38,14 @@ jobs:
       #   run: |
       #     ls -l ${{ github.workspace }}/cx_result.sarif
       #     stat ${{ github.workspace }}/cx_result.sarif
-          touch ${{ github.workspace }}/test_write.txt
+      #     touch ${{ github.workspace }}/test_write.txt
 
-      - name: Generate bypass.sarif file
-        run: |
-          echo '{"$schema":"https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json","version":"2.1.0","runs":[{"tool":{"driver":{"name":"Checkmarx One","version":"1.0","informationUri":"https://checkmarx.com/resource/documents/en/34965-67042-checkmarx-one.html","rules":[]}},"results":[]}]}'> cx_result.sarif
+      # - name: Generate bypass.sarif file
+      #   run: |
+      #     echo '{"$schema":"https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json","version":"2.1.0","runs":[{"tool":{"driver":{"name":"Checkmarx One","version":"1.0","informationUri":"https://checkmarx.com/resource/documents/en/34965-67042-checkmarx-one.html","rules":[]}},"results":[]}]}'> cx_result.sarif
 
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: cx_result.sarif
-          category: checkmarx-${{ github.run_id }}
+      # - name: Upload SARIF file
+      #   uses: github/codeql-action/upload-sarif@v3
+      #   with:
+      #     sarif_file: cx_result.sarif
+      #     category: checkmarx-${{ github.run_id }}
